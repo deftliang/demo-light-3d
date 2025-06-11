@@ -11,7 +11,7 @@ function Scene() {
   const spotLightRef = useRef();
   const [spotLightPosition, setSpotLightPosition] = useState([0, 0.1, 0]);
   const [spotLightIntensity, setSpotLightIntensity] = useState(10);
-
+  const [angle, setAngle] = useState(0.5);
   return (
     <>
       {/* 环境光 */}
@@ -21,7 +21,7 @@ function Scene() {
       <SpotLight
         ref={spotLightRef}
         position={spotLightPosition}
-        angle={0.5}
+        angle={angle}
         penumbra={0.5}
         intensity={Number(spotLightIntensity)}
         castShadow
@@ -100,8 +100,20 @@ function Scene() {
               step="0.1"
               value={spotLightIntensity}
               onChange={(e) => {
-                console.log("🧸 e:", e.target.value);
                 setSpotLightIntensity(parseFloat(e.target.value));
+              }}
+            />
+          </div>
+          <div>
+            <label>角度: </label>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step="0.1"
+              value={angle}
+              onChange={(e) => {
+                setAngle(parseFloat(e.target.value));
               }}
             />
           </div>
